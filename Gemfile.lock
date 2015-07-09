@@ -10,10 +10,6 @@ GEM
       activesupport (= 4.1.8)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    actionpack-action_caching (1.1.1)
-      actionpack (>= 4.0.0, < 5.0)
-    actionpack-page_caching (1.0.2)
-      actionpack (>= 4.0.0, < 5)
     actionview (4.1.8)
       activesupport (= 4.1.8)
       builder (~> 3.1)
@@ -41,9 +37,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    crack (0.4.2)
-      safe_yaml (~> 1.0.0)
-    curb (0.8.8)
     erubis (2.7.0)
     excon (0.45.3)
     execjs (2.5.2)
@@ -91,7 +84,6 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     redis (3.2.1)
-    safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -127,11 +119,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionpack-action_caching
-  actionpack-page_caching
   coffee-rails (~> 4.0.0)
-  crack
-  curb
   excon
   haml
   jbuilder (~> 2.0)

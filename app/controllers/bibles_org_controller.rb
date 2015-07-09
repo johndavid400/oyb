@@ -1,7 +1,5 @@
 class BiblesOrgController < ApplicationController
 
-  caches_page :get_passages, :expires_in => 10.minutes
-
   def index
     @url = "versions.js"
     setup_curl

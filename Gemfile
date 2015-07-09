@@ -39,11 +39,6 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'pry'
-gem 'curb'
-gem 'crack'
 gem 'haml'
-
-gem 'actionpack-action_caching'
-gem 'actionpack-page_caching'
 gem 'excon'
 gem 'redis'
