@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "get_passages" => "bibles_org#get_passages"
   get "day_to_date" => "bibles_org#day_to_date"
 
+  get 'import' => 'api#import'
+
   get "today" => "home#today"
 
   # The priority is based upon order of creation: first created -> highest priority.
