@@ -18,3 +18,16 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #52464A;
 }
+
+.oyb-prev, .oyb-next {
+  border: 1px solid gray;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.oyb-nav-links {
+  float: right;
+  margin-top: 20px;
+}

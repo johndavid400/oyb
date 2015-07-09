@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "bibles_org" => "bibles_org#index"
   post "bibles_org_post" => "bibles_org#bibles_org_post"
   get "get_passages" => "bibles_org#get_passages"
+  get "day_to_date" => "bibles_org#day_to_date"
 
   get "today" => "home#today"
 

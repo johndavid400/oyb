@@ -45,6 +45,7 @@ GEM
       safe_yaml (~> 1.0.0)
     curb (0.8.8)
     erubis (2.7.0)
+    excon (0.45.3)
     execjs (2.5.2)
     haml (4.0.6)
       tilt
@@ -130,6 +131,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   crack
   curb
+  excon
   haml
   jbuilder (~> 2.0)
   jquery-rails

@@ -10,14 +10,15 @@ class BiblesOrgController < ApplicationController
   end
 
   def get_passages
-    day = Day.find(Date.today.yday())
-    passages = day.passages
+    @result = []
+    @day = params[:day].present? ? Day.find(params[:day]) : Day.find(Date.today.yday())
+    insert_header
+    passages = @day.passages
     version = "eng-KJV" # test with KJV english
-    @result = [].push(day.formatted_devotional)
+    @result.push(@day.formatted_devotional)
     passages.each do |p|
       passage = p.gsub(/\s/, "+")
-      @url = "passages.js?q[]=#{passage}&version=#{version}"
-      setup_curl
+      get("passages.js?q[]=#{passage}&version=#{version}")
       @result.push("<hr>").push("<h2>#{p}</h2>")
       @result.push(@resp["response"]["search"]["result"]["passages"].map{|s| s["text"] }.join("<p>"))
     end
@@ -25,17 +26,18 @@ class BiblesOrgController < ApplicationController
     render :json => @text.to_json
   end
 
-  def setup_curl
+  def insert_header
+    @result.push("<h1>One Year Bible - <span class='date'>#{day_to_date(@day.id)}</span></h1><hr><span class='oyb-nav-links'><a href='#' class='oyb-prev update' data-id='#{@day.id - 1}'>Prev</a><a href='#' class='oyb-next update' data-id='#{@day.id + 1}'>Next</a></span>")
+  end
+
+  def get(endpoint)
     base = 'https://bibles.org/v2/'
-    key = ENV["BIBLES_ORG_KEY"]
-    resp = Curl::Easy.new(base + @url)
-    resp.ssl_verify_peer = false
-    resp.follow_location = true
-    resp.max_redirects = 10
-    resp.http_auth_types = :basic
-    resp.userpwd = "#{key}:X"
-    resp.perform
-    @resp = JSON.parse(resp.body_str)
+    url = base + endpoint
+    resp = Excon.get(url, :user => ENV["BIBLES_ORG_KEY"], :password => 'X')
+    if resp.headers["Location"]
+      resp = Excon.get(resp.headers["Location"], :user => ENV["BIBLES_ORG_KEY"], :password => 'X')
+    end
+    @resp = JSON.parse(resp.body)
   end
 
   def bibles_org_post
@@ -68,6 +70,15 @@ class BiblesOrgController < ApplicationController
     resp.userpwd = "#{key}:X"
     resp.perform
     @result = params[:format] == "js" ? Crack::JSON.parse(resp.body_str) : Crack::XML.parse(resp.body_str)
+  end
+
+  def day_to_date(day)
+    if day.to_s.length == 1
+      day = "00#{day}"
+    elsif day.to_s.length == 2
+      day = "0#{day}"
+    end
+    Date.strptime(day.to_s, "%j").strftime("%B %-d")
   end
 
 end

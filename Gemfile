@@ -45,3 +45,4 @@ gem 'haml'
 
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
+gem 'excon'

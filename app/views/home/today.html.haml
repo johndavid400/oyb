@@ -1,17 +1,3 @@
-%h1
-  One Year Bible -
-  = Date.today.strftime("%D")
-%hr
-
 .oyb
   Loading...
-
-:javascript
-  // call this line, pass in the class of the div you would like to fill with OYB content
-  loadScripture("oyb");
-  // the function that loads the data from the server
-  function loadScripture(divClass) {
-    $.get("http://localhost:3000/get_passages", function(data){ $("." + divClass).html(data); });
-  }
-
 
