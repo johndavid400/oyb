@@ -12,17 +12,22 @@ class BiblesOrgController < ApplicationController
   def get_passages
     @result = []
     @day = params[:day].present? ? Day.find(params[:day]) : Day.find(Date.today.yday())
-    insert_header
-    passages = @day.passages
     version = "eng-KJV" # test with KJV english
-    @result.push(@day.formatted_devotional)
-    passages.each do |p|
-      passage = p.gsub(/\s/, "+")
-      get("passages.js?q[]=#{passage}&version=#{version}")
-      @result.push("<hr>").push("<h2>#{p}</h2>")
-      @result.push(@resp["response"]["search"]["result"]["passages"].map{|s| s["text"] }.join("<p>"))
+    if RedisConnection.new.connection.get("oyb#{@day.id}v#{version}")
+      @text = RedisConnection.new.connection.get("oyb#{@day.id}v#{version}")
+    else
+      insert_header
+      passages = @day.passages
+      @result.push(@day.formatted_devotional)
+      passages.each do |p|
+        passage = p.gsub(/\s/, "+")
+        get("passages.js?q[]=#{passage}&version=#{version}")
+        @result.push("<hr>").push("<h2>#{p}</h2>")
+        @result.push(@resp["response"]["search"]["result"]["passages"].map{|s| s["text"] }.join("<p>"))
+      end
+      @text = @result.join("<p>")
+      RedisConnection.new.connection.set("oyb#{@day.id}v#{version}", @text)
     end
-    @text = @result.join("<p>")
     render :json => @text.to_json
   end
 
