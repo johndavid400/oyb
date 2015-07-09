@@ -3,10 +3,10 @@ class BiblesOrgController < ApplicationController
   caches_page :get_passages, :expires_in => 10.minutes
 
   def index
-    @url = "versions.xml"
+    @url = "versions.js"
     setup_curl
     @versions = {}
-    @result["response"]["versions"]["version"].select{|s| s["lang_name_eng"] == "English" }.map{|s| @versions[s["name"]] = s["id"] }
+    @resp["response"]["versions"].select{|s| s["lang_name_eng"] == "English" }.map{|s| @versions[s["name"]] = s["id"] }
   end
 
   def get_passages
@@ -44,7 +44,7 @@ class BiblesOrgController < ApplicationController
     version = params[:version]
     passage = params[:input].gsub(/\s/, "+")
     @url = "#{resource}.#{format}?q[]=#{passage}&version=#{version}"
-    setup_curl
+    setup_curl_old
     if params[:response_type] == "raw"
       if params[:format] == "js"
         render json: @result
@@ -55,6 +55,19 @@ class BiblesOrgController < ApplicationController
       @format = params[:format]
       render 'passage.html.haml'
     end
+  end
+
+  def setup_curl_old
+    base = 'https://bibles.org/v2/'
+    key = ENV["BIBLES_ORG_KEY"]
+    resp = Curl::Easy.new(base + @url)
+    resp.ssl_verify_peer = false
+    resp.follow_location = true
+    resp.max_redirects = 10
+    resp.http_auth_types = :basic
+    resp.userpwd = "#{key}:X"
+    resp.perform
+    @result = params[:format] == "js" ? Crack::JSON.parse(resp.body_str) : Crack::XML.parse(resp.body_str)
   end
 
 end
