@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get "bibles_org" => "bibles_org#index"
+  post "bibles_org_post" => "bibles_org#bibles_org_post"
+  get "get_passages" => "bibles_org#get_passages"
+
+  get "today" => "home#today"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

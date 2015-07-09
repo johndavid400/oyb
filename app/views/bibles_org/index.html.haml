@@ -1,0 +1,17 @@
+%h2 Search Bibles.org
+
+= form_tag(bibles_org_post_path, :method => :post) do 
+  %br
+  = label_tag "Search For:"
+  = text_field_tag "input"
+  %br
+  = label_tag "Result Format:"
+  = select_tag "format", options_for_select(["xml", "js"])
+  %br
+  = label_tag "Version:"
+  = select_tag "version", options_for_select(@versions)
+  %br
+  = label_tag "Response Type:"
+  = select_tag "response_type", options_for_select(["formatted", "raw"])
+  %br
+  = submit_tag "Submit"
