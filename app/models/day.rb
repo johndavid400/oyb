@@ -14,4 +14,10 @@ class Day < ActiveRecord::Base
     end
   end
 
+  def self.cache_with_redis
+    Day.all.each do |day|
+      Excon.get("http://oyb.herokuapp.com/get_passages?day=#{day.id}")
+    end
+  end
+
 end

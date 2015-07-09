@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :to => redirect('https://github.com/johndavid400/oyb')
+
   get "bibles_org" => "bibles_org#index"
   post "bibles_org_post" => "bibles_org#bibles_org_post"
   get "get_passages" => "bibles_org#get_passages"
