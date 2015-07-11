@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 
 // the function that loads the data from the server
-function loadScripture(divClass) {
+function loadScripture() {
   $.get("http://oyb.herokuapp.com/get_passages", function(data){ $(".oyb").html(data); });
 }
 
