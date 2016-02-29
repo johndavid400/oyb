@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'oyb.prototyperobotics.com'
 set :repo_url, "git@github.com:johndavid400/oyb.git"
-set :branch, "production"
+set :branch, "master"
 
 set :rvm1_ruby_version, "ruby-2.2.2@oyb"
 
@@ -27,11 +27,11 @@ set :log_level, :debug
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+#set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp', "public/assets")
+#set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp', "public/assets")
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
