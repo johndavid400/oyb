@@ -16,7 +16,7 @@ class Day < ActiveRecord::Base
 
   def self.cache_with_redis
     Day.all.each do |day|
-      Excon.get("http://oyb.herokuapp.com/get_passages?day=#{day.id}")
+      Excon.get("http://oyb.prototyperobotics.com/get_passages?day=#{day.id}")
     end
   end
 
