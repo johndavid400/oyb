@@ -5,7 +5,7 @@ class Day < ActiveRecord::Base
   end
 
   def formatted_devotional
-    "<h2>Daily Devotional</h2><i>by Unknown</i><p>#{devotional}"
+    "<h2>Daily Devotional</h2><i>Larry Stockstill</i><p>#{devotional}"
   end
 
   def self.populate(url)
