@@ -10,4 +10,6 @@
   = link_to "Psalm", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-ps"
   = link_to "Proverb", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-pr"
   = link_to "#{@day.date.tomorrow.strftime("%b %e")} >", "#", :class => 'oyb-next oyb-nav-button oyb-update', :'data-id' => @day.id + 1
+  = select_tag "version", options_for_select(versions, @version), :class => 'oyb-version-switcher'
+  = hidden_field_tag "current_day", @day.id
 %hr.oyb-hr

@@ -39,8 +39,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 set :keep_releases, 15
 
-#namespace :deploy do
-#
+namespace :deploy do
+
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
 #      # Here we can do anything such as:
@@ -49,13 +49,14 @@ set :keep_releases, 15
 #      # end
 #    end
 #  end
-#
-#  after :finished, :restart_passenger do
-#    on roles(:app), in: :sequence, wait: 5 do
-#      within release_path do
-#        execute 'touch /home/deployer/prototyperobotics/current/tmp/restart.txt'
-#      end
-#    end
-#  end
-#
-#end
+
+  after :finished, :restart_passenger do
+    on roles(:app), in: :sequence, wait: 5 do
+      within release_path do
+        execute "~/.rvm/bin/rvm ruby-2.2.3@deployer do sass #{release_path}/app/assets/stylesheets/oyb.scss #{release_path}/public/oyb.css"
+        execute 'touch /home/deployer/oyb/current/tmp/restart.txt'
+      end
+    end
+  end
+
+end

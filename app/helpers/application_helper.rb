@@ -9,4 +9,14 @@ module ApplicationHelper
     Date.strptime(day.to_s, "%j").strftime("%B %-d")
   end
 
+  def versions
+    # available versions
+    {
+      "KJV" => "eng-KJV",
+      "ESV" => "eng-ESV",
+      "MSG" => "eng-MSG",
+      "CEV" => "eng-CEV"
+    }
+  end
+
 end
