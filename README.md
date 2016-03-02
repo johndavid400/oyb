@@ -41,8 +41,9 @@ The content you get from this api is injected into the div with class "oyb". Eve
 Below is a general outline of the CSS classes you have to work with:
 
         .oyb
-          .oyb-title
-          .oyb-date
+          .oyb-header
+            .oyb-title
+            .oyb-date
           %hr.oyb-hr
           .oyb-nav-links
             .oyb-prev.oyb-nav-button.oyb-update
@@ -60,8 +61,9 @@ Some of the above classes are used multiple times in the response (ie. .oyb-nav-
 
 Descriptions for each piece of content:
 
-        title: the title of the page - "One Year Bible"
-        date: the day that you are reading
+        header:
+          title: the title of the page - "One Year Bible"
+          date: the day that you are reading
         nav-links:
           prev: link to previous day
           nav-switcher: switch between the different sections of content (Devotional, Old Testament, New Testament, Psalm, Proverb), there are 5 of these links.
@@ -75,4 +77,5 @@ Descriptions for each piece of content:
           passage-text: the scripture text returned from Bibles.org
 
 
+This layout makes it easy to override any element that might be in your way by simply setting a css attribute 'display:none' to hide it. It should be fairly easy to customize or build a stylesheet to match you website layout.
 
