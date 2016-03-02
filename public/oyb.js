@@ -1,7 +1,8 @@
+// load scriptures into a div with a class of 'oyb'
 $(document).ready(function(){
   loadScripture();
   // function for updating verses to a specific day
-  $('body').on("click", ".update", function(event){
+  $('body').on("click", ".oyb-update", function(event){
     event.preventDefault();
     $(".oyb").html("Loading...");
     $.get("http://oyb.prototyperobotics.com/get_passages?day=" + $(this).attr("data-id"), function(data){ $(".oyb").html(data); });
@@ -12,4 +13,13 @@ $(document).ready(function(){
 function loadScripture() {
   $.get("http://oyb.prototyperobotics.com/get_passages", function(data){ $(".oyb").html(data); });
 }
+
+// do stuff for the nav
+$("body").on("click", ".oyb-nav-switcher", function(event){
+  event.preventDefault();
+  $(".oyb-passage").hide();
+  $(".oyb-nav-switcher").removeClass("active");
+  $("#" + $(this).attr("id") + "-passage").show();
+  $(this).addClass("active");
+});
 
