@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'oyb.prototyperobotics.com'
 set :repo_url, "git@github.com:johndavid400/oyb.git"
-set :branch, "master"
+set :branch, "production"
 
 set :rvm1_ruby_version, "ruby-2.2.2@oyb"
 
