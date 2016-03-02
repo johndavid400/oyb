@@ -1,0 +1,4 @@
+.oyb-passage{:id => "oyb-#{type}-passage"}
+  .oyb-passage-title= title
+  - scriptures.each do |scripture|
+    .oyb-passage-text= scripture["text"].html_safe

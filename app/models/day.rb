@@ -4,8 +4,12 @@ class Day < ActiveRecord::Base
     [ot, nt, psalm, proverb]
   end
 
+  def passages_with_names
+    {"ot" => ot, "nt" => nt, "ps" => psalm, "pr" => proverb}
+  end
+
   def formatted_devotional
-    "<h2>Daily Devotional</h2><i>Larry Stockstill</i><p>#{devotional}"
+    "<div class='oyb-devotional-title'>Daily Devotional</div><div class='oyb-devotional-author'>Larry Stockstill</div><div class='oyb-devotional'>#{devotional}</div>"
   end
 
   def self.populate(url)
@@ -17,6 +21,7 @@ class Day < ActiveRecord::Base
   def self.cache_with_redis
     Day.all.each do |day|
       Excon.get("http://oyb.prototyperobotics.com/get_passages?day=#{day.id}")
+      puts day.id
     end
   end
 

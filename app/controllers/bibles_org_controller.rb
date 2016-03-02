@@ -12,26 +12,32 @@ class BiblesOrgController < ApplicationController
     @day = params[:day].present? ? Day.find(params[:day]) : Day.find(Date.today.yday())
     version = "eng-KJV" # test with KJV english
     if RedisConnection.new.connection.get("oyb#{@day.id}v#{version}")
-      @text = RedisConnection.new.connection.get("oyb#{@day.id}v#{version}")
+      @result = RedisConnection.new.connection.get("oyb#{@day.id}v#{version}")
     else
-      insert_header
-      passages = @day.passages
-      @result.push(@day.formatted_devotional)
-      passages.each do |p|
-        passage = p.gsub(/\s/, "+")
+      @result.push(render_to_string(:template => 'bibles_org/_nav.html.haml', :layout => false))
+      @result.push(render_to_string(:template => 'bibles_org/_devotional.html.haml', :layout => false))
+      @day.passages_with_names.each do |k,v|
+        passage = v.gsub(/\s/, "+")
         get("passages.js?q[]=#{passage}&version=#{version}")
-        @result.push("<hr>").push("<h2>#{p}</h2>")
-        @result.push(@resp["response"]["search"]["result"]["passages"].map{|s| s["text"] }.join("<p>"))
+        scriptures = @resp["response"]["search"]["result"]["passages"]
+        text = render_to_string(:template => 'bibles_org/_passage.html.haml', :layout => false, :locals => {type: k, title: v, scriptures: scriptures})
+        @result.push(text)
       end
-      @text = @result.join("<p>")
-      RedisConnection.new.connection.set("oyb#{@day.id}v#{version}", @text)
+      RedisConnection.new.connection.set("oyb#{@day.id}v#{version}", @result.join)
     end
-    render :json => @text.to_json
+    render :json => @result.to_json
   end
 
-  def insert_header
-    @result.push("<h1>One Year Bible - <span class='date'>#{day_to_date(@day.id)}</span></h1><hr><span class='oyb-nav-links'><a href='#' class='oyb-prev update' data-id='#{@day.id - 1}'>Prev</a><a href='#' class='oyb-next update' data-id='#{@day.id + 1}'>Next</a></span>")
+  def day_to_date(day)
+    if day.to_s.length == 1
+      day = "00#{day}"
+    elsif day.to_s.length == 2
+      day = "0#{day}"
+    end
+    Date.strptime(day.to_s, "%j").strftime("%B %-d")
   end
+
+  private
 
   def get(endpoint)
     base = 'https://bibles.org/v2/'
@@ -73,15 +79,6 @@ class BiblesOrgController < ApplicationController
     resp.userpwd = "#{key}:X"
     resp.perform
     @result = params[:format] == "js" ? Crack::JSON.parse(resp.body_str) : Crack::XML.parse(resp.body_str)
-  end
-
-  def day_to_date(day)
-    if day.to_s.length == 1
-      day = "00#{day}"
-    elsif day.to_s.length == 2
-      day = "0#{day}"
-    end
-    Date.strptime(day.to_s, "%j").strftime("%B %-d")
   end
 
 end
