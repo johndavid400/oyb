@@ -1,5 +1,6 @@
-.oyb-title One Year Bible
-.oyb-date= @day.date.strftime("%B %e")
+.oyb-header
+  .oyb-title One Year Bible
+  .oyb-date= @day.date.strftime("%B %e")
 %hr.oyb-hr
 .oyb-nav-links
   = link_to "< #{@day.date.yesterday.strftime("%b %e")}", "#", :class => 'oyb-prev oyb-nav-button oyb-update', :'data-id' => @day.id - 1

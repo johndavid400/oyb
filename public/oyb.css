@@ -1,12 +1,15 @@
 .oyb {
   padding: 20px; }
-  .oyb .oyb-title {
-    font-size: 2em;
-    float: left; }
-  .oyb .oyb-date {
-    font-size: 1.4em;
-    float: right;
-    color: gray; }
+  .oyb .oyb-header {
+    overflow: auto;
+    margin: 10px 0px; }
+    .oyb .oyb-header .oyb-title {
+      font-size: 2em;
+      float: left; }
+    .oyb .oyb-header .oyb-date {
+      font-size: 1.4em;
+      float: right;
+      color: gray; }
   .oyb .oyb-nav-links {
     margin: 30px 0px; }
     .oyb .oyb-nav-links a.oyb-prev {
