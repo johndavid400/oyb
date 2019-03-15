@@ -5,13 +5,13 @@ $(document).ready(function(){
   $('body').on("click", ".oyb-update", function(event){
     event.preventDefault();
     $(".oyb").html("Loading...");
-    $.get("http://oyb.prototyperobotics.com/get_passages?day=" + $(this).attr("data-id"), function(data){ $(".oyb").html(data); });
+    $.get("https://oyb.prototyperobotics.com/get_passages?day=" + $(this).attr("data-id"), function(data){ $(".oyb").html(data); });
   });
 });
 
 // the function that loads the data from the server
 function loadScripture() {
-  $.get("http://oyb.prototyperobotics.com/get_passages", function(data){ $(".oyb").html(data); });
+  $.get("https://oyb.prototyperobotics.com/get_passages", function(data){ $(".oyb").html(data); });
 }
 
 // do stuff for the nav

@@ -10,9 +10,9 @@ Step 1: Add an empty div with a class named "oyb" on a page of your website, lik
 
 Step 2: Then add links to the javascript and css file (and jquery if you don't already have it), like so:
 
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://oyb.prototyperobotics.com/oyb.js"></script>
-    <link href="http://oyb.prototyperobotics.com/oyb.css" media="screen" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://oyb.prototyperobotics.com/oyb.js"></script>
+    <link href="https://oyb.prototyperobotics.com/oyb.css" media="screen" rel="stylesheet" />
 
 note: if you already have Jquery loaded, then you can omit the first script tag.
 
