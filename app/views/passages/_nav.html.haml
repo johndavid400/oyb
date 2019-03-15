@@ -1,0 +1,15 @@
+.oyb-header
+  .oyb-title One Year Bible
+  .oyb-date= @day.date.strftime("%B %e")
+%hr.oyb-hr
+.oyb-nav-links
+  = link_to "< #{@day.date.yesterday.strftime("%b %e")}", "#", :class => 'oyb-prev oyb-nav-button oyb-update', :'data-id' => @day.id - 1
+  = link_to "Devotional", "#", :class => 'oyb-nav-button oyb-nav-switcher active', :id => "oyb-dv"
+  = link_to "Old Testament", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-ot"
+  = link_to "New Testament", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-nt"
+  = link_to "Psalm", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-ps"
+  = link_to "Proverb", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-pr"
+  = link_to "#{@day.date.tomorrow.strftime("%b %e")} >", "#", :class => 'oyb-next oyb-nav-button oyb-update', :'data-id' => @day.id + 1
+  = select_tag "version", options_for_select(versions, @version), :class => 'oyb-version-switcher'
+  = hidden_field_tag "current_day", @day.id
+%hr.oyb-hr

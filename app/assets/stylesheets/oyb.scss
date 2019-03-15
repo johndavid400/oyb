@@ -1,0 +1,86 @@
+// oyb styles
+$gray: gray;
+$blue: #008cba;
+$white: #ffffff;
+$black: #000000;
+
+.oyb {
+  padding: 20px;
+  .oyb-header {
+    overflow: auto;
+    margin: 10px 0px;
+    .oyb-title {
+      font-size: 2em;
+      float: left;
+    }
+    .oyb-date {
+      font-size: 1.4em;
+      float: right;
+      color: $gray;
+    }
+  }
+  .oyb-nav-links {
+    margin: 30px 0px;
+    a.oyb-prev {
+      color: $black;
+    }
+    a.oyb-next {
+      color: $black;
+    }
+    .oyb-nav-switcher {
+    }
+    .active {
+      background: $blue;
+      color: $white;
+    }
+  }
+  .oyb-nav-button {
+    padding: 8px 15px;
+    border: 1px solid $gray;
+  }
+  .oyb-devotional-title {
+    font-size: 1.8em;
+    color: $blue;
+  }
+  .oyb-devotional-author {
+    font-size: 1.2em;
+    color: $gray;
+    margin: 20px 0px;
+  }
+  .oyb-devotional {
+  }
+  .oyb-passage {
+    margin-top: 25px;
+    display: none;
+    .oyb-passage-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: $blue;
+    }
+    .oyb-passage-text {
+      h3 {
+        font-size: 1.4em;
+      }
+    }
+  }
+  #oyb-dv-passage {
+    display: block;
+  }
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+select {
+  background: transparent;
+  width: 70px;
+  padding: 0px 15px;
+  font-size: 1em;
+  line-height: 1;
+  border: 1px solid gray;
+  border-radius: 0;
+  height: 35px;
+  -webkit-appearance: none;
+}
