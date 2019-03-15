@@ -1,4 +1,4 @@
-class Day < ActiveRecord::Base
+class Day < ApplicationRecord
 
   def passages
     [ot, nt, psalm, proverb]
@@ -26,3 +26,4 @@ class Day < ActiveRecord::Base
   end
 
 end
+

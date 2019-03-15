@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   respond_to :json, :xml
-  before_filter :set_format, :verify_key
+  before_action :set_format, :verify_key
 
   def import
     d = JSON.parse(params[:day])

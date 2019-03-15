@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302154000) do
+ActiveRecord::Schema.define(version: 2019_03_14_235955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "days", force: true do |t|
+  create_table "days", force: :cascade do |t|
     t.datetime "date"
-    t.string   "chapter"
-    t.text     "excerpt"
-    t.text     "devotional"
-    t.string   "ot"
-    t.string   "nt"
-    t.string   "psalm"
-    t.string   "proverb"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "month_of_year"
-    t.integer  "day_of_month"
+    t.string "chapter"
+    t.text "excerpt"
+    t.text "devotional"
+    t.string "ot"
+    t.string "nt"
+    t.string "psalm"
+    t.string "proverb"
+    t.integer "month_of_year"
+    t.integer "day_of_month"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

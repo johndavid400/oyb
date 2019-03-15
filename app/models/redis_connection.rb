@@ -6,3 +6,4 @@ class RedisConnection
   end
 
 end
+

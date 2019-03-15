@@ -18,3 +18,5 @@
 /lib/oyb.csv
 /lib/dump.txt
 /lib/importer*
+
+/config/master.key

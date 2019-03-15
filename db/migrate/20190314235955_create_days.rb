@@ -1,4 +1,4 @@
-class CreateDays < ActiveRecord::Migration
+class CreateDays < ActiveRecord::Migration[5.2]
   def change
     create_table :days do |t|
       t.datetime :date
@@ -9,6 +9,8 @@ class CreateDays < ActiveRecord::Migration
       t.string :nt
       t.string :psalm
       t.string :proverb
+      t.integer :month_of_year
+      t.integer :day_of_month
 
       t.timestamps
     end
