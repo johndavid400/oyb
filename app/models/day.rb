@@ -25,5 +25,13 @@ class Day < ApplicationRecord
     end
   end
 
+  def self.set_values
+    Day.all.each do |day|
+      day.day_of_month = day.date.strftime("%-d")
+      day.month_of_year = day.date.strftime("%-m")
+      day.save if day.changed?
+    end
+  end
+
 end
 
