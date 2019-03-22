@@ -5,13 +5,13 @@ $(document).ready(function(){
   $('body').on("click", ".oyb-update", function(event){
     event.preventDefault();
     $(".oyb").html("Loading...");
-    $.get("http://oyb.prototyperobotics.com/get_passages?day=" + $(this).attr("data-id"), function(data){ $(".oyb").html(data); });
+    $.get("http://localhost:3000/get_passages?day=" + $(this).attr("data-id"), function(data){ $(".oyb").html(data); });
   });
 });
 
 // the function that loads the data from the server
 function loadScripture() {
-  $.get("http://oyb.prototyperobotics.com/get_passages", function(data){ $(".oyb").html(data); });
+  $.get("http://localhost:3000/get_passages", function(data){ $(".oyb").html(data); });
 }
 
 // do stuff for the nav
@@ -22,4 +22,11 @@ $("body").on("click", ".oyb-nav-switcher", function(event){
   $("#" + $(this).attr("id") + "-passage").show();
   $(this).addClass("active");
 });
+
+$("body").on("change", ".oyb-version-switcher", function(event){
+  event.preventDefault();
+  var version = $(this).val();
+  $.get("http://localhost:3000/get_passages?version=" + version, function(data){ $(".oyb").html(data); });
+});
+
 

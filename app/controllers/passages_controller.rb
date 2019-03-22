@@ -35,3 +35,4 @@ class PassagesController < ApplicationController
   end
 
 end
+
