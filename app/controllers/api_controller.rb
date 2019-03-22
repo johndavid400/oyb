@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  respond_to :json, :xml
+  #respond_to :json, :xml
   before_action :set_format, :verify_key
 
   def import
