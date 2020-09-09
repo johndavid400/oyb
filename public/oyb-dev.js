@@ -5,13 +5,13 @@ $(document).ready(function(){
   $('body').on("click", ".oyb-update", function(event){
     event.preventDefault();
     $(".oyb").html("Loading...");
-    $.get("http://localhost:3000/get_passages", {day: $(this).attr("data-id"), version: $("#version").val()}, function(data){ $(".oyb").html(data); });
+    $.get("http://localhost:3000/get_passages", {day: $(this).attr("data-id"), bible: $("#version").val()}, function(data){ $(".oyb").html(data); });
   });
   // version switcher
   $("body").on("change", ".oyb-version-switcher", function(event){
     event.preventDefault();
     $(".oyb").html("Loading...");
-    $.get("http://localhost:3000/get_passages", {day: $("#current_day").val(), version: $(this).val()}, function(data){ $(".oyb").html(data); });
+    $.get("http://localhost:3000/get_passages", {day: $("#current_day").val(), bible: $(this).val()}, function(data){ $(".oyb").html(data); });
   });
 });
 

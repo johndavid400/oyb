@@ -12,12 +12,10 @@ module ApplicationHelper
   def versions
     # available versions
     {
-      "KJV" => "eng-KJV",
-      "ESV" => "eng-ESV",
-      "MSG" => "eng-MSG",
-      "CEV" => "eng-CEV"
+      "KJV" => "de4e12af7f28f599-01",
+      "ASV" => "06125adad2d5898a-01",
+      "Free Bible Version" => "65eec8e0b60e656b-01",
     }
   end
 
 end
-

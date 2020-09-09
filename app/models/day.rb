@@ -1,36 +1,66 @@
 class Day < ApplicationRecord
 
+  def self.today
+    date = Date.today
+    Day.find_by(month_of_year: date.strftime("%-m"), day_of_month: date.strftime("%-d"))
+  end
+
   def passages
-    [ot, nt, psalm, proverb]
+    passages_with_names.values
   end
 
   def passages_with_names
-    {"ot" => ot, "nt" => nt, "ps" => psalm, "pr" => proverb}
+    {
+      "ot" => ot,
+      "nt" => nt,
+      "psalm" => psalm,
+      "proverb" => proverb
+    }
+  end
+
+  def get_passages(params = {})
+    result = []
+    # Default to King James Version if none is specified: "de4e12af7f28f599-01"
+    bible_id = params[:bible].present? ? params[:bible] : "de4e12af7f28f599-01"
+
+    # prepend the nav and devotional templates
+    result.push(action_controller.render_to_string(:template => 'passages/_nav.html.haml', locals: {day: self, versions: versions, bible: bible_id}, :layout => false))
+    result.push(action_controller.render_to_string(:template => 'passages/_devotional.html.haml', locals: {day: self}, :layout => false))
+
+    passages_with_names.each do |section, passages|
+      result.push(cached_passage(bible_id, section))
+    end
+
+    return result
+  end
+
+  def cached_passage(bible_id, section)
+    Rails.cache.fetch("#{id}-#{bible_id}-#{section}", expires_in: 12.hours) do
+      resp = get_passage(bible_id, section)
+      action_controller.render_to_string(:template => 'passages/_passage.html.haml', :layout => false, :locals => {type: section, title: resp['reference'], scriptures: resp['content']})
+    end
+  end
+
+  def get_passage(bible_id = "de4e12af7f28f599-01", section)
+    passage_id = self.send(section)
+    Bible.new.passages(bible_id, passage_id)["data"]
   end
 
   def formatted_devotional
     "<div class='oyb-devotional-title'>Daily Devotional</div><div class='oyb-devotional-author'>Larry Stockstill</div><div class='oyb-devotional'>#{devotional}</div>"
   end
 
-  def self.populate(url)
-    Day.all.each do |day|
-      Excon.get(url, :headers => {"Authorization" => "Token token=#{ENV['OYB_API_KEY']}"}, :query => {:day => day.to_json(:except => [:devotional, :excerpt])})
-    end
+  def action_controller
+    ActionController::Base.new
   end
 
-  def self.cache_with_redis
-    Day.all.each do |day|
-      Excon.get("http://oyb.prototyperobotics.com/get_passages?day=#{day.id}")
-      puts day.id
-    end
-  end
-
-  def self.set_values
-    Day.all.each do |day|
-      day.day_of_month = day.date.strftime("%-d")
-      day.month_of_year = day.date.strftime("%-m")
-      day.save if day.changed?
-    end
+  def versions
+    # available versions
+    {
+      "KJV" => "de4e12af7f28f599-01",
+      "ASV" => "06125adad2d5898a-01",
+      "Free Bible Version" => "65eec8e0b60e656b-01",
+    }
   end
 
 end

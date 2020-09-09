@@ -1,49 +1,58 @@
-.oyb {
-  padding: 20px; }
-  .oyb .oyb-header {
-    overflow: auto;
-    margin: 10px 0px; }
-    .oyb .oyb-header .oyb-title {
-      font-size: 2em;
-      float: left; }
-    .oyb .oyb-header .oyb-date {
-      font-size: 1.4em;
-      float: right;
-      color: gray; }
-  .oyb .oyb-nav-links {
-    margin: 30px 0px; }
-    .oyb .oyb-nav-links a.oyb-prev {
-      color: black; }
-    .oyb .oyb-nav-links a.oyb-next {
-      color: black; }
-    .oyb .oyb-nav-links .active {
-      background: #008cba;
-      color: white; }
-  .oyb .oyb-nav-button {
-    padding: 8px 15px;
-    border: 1px solid gray; }
-  .oyb .oyb-devotional-title {
-    font-size: 1.8em;
-    color: #008cba; }
-  .oyb .oyb-devotional-author {
-    font-size: 1.2em;
-    color: gray;
-    margin: 20px 0px; }
-  .oyb .oyb-passage {
-    margin-top: 25px;
-    display: none; }
-    .oyb .oyb-passage .oyb-passage-title {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      color: #008cba; }
-    .oyb .oyb-passage .oyb-passage-text h3 {
-      font-size: 1.4em; }
-  .oyb #oyb-dv-passage {
-    display: block; }
+.oyb { padding: 20px; }
+.oyb .oyb-header {
+  overflow: auto;
+  margin: 10px 0px;
+}
+.oyb .oyb-header .oyb-title {
+  font-size: 2em;
+  float: left;
+}
+.oyb .oyb-header .oyb-date {
+  font-size: 1.4em;
+  float: right;
+  color: gray;
+}
+.oyb .oyb-nav-links { margin: 30px 0px; }
+.oyb .oyb-nav-links a.oyb-prev { color: black; }
+.oyb .oyb-nav-links a.oyb-next { color: black; }
+.oyb .oyb-nav-links .active {
+  background: #008cba;
+  color: white;
+}
+.oyb .oyb-nav-button {
+  padding: 8px 15px;
+  border: 1px solid gray;
+}
+.oyb .oyb-devotional-title {
+  font-size: 1.8em;
+  color: #008cba;
+}
+.oyb .oyb-devotional-author {
+  font-size: 1.2em;
+  color: gray;
+  margin: 20px 0px;
+}
+.oyb .oyb-passage {
+  margin-top: 25px;
+  display: none;
+}
+.oyb .oyb-passage .oyb-passage-title {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #008cba;
+}
+.oyb .oyb-passage .oyb-passage-text h3 { font-size: 1.4em; }
+.oyb .oyb-passage .oyb-passage-text .v {
+  color: gray;
+  margin-right: 10px;
+}
+.oyb #oyb-dv-passage {
+  display: block; }
 
 a {
   color: black;
-  text-decoration: none;}
+  text-decoration: none;
+}
 
 select {
   background: transparent;
@@ -54,4 +63,5 @@ select {
   border: 1px solid gray;
   border-radius: 0;
   height: 35px;
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+}
