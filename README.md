@@ -14,21 +14,18 @@ Step 2: Then add links to the javascript and css file (and jquery if you don't a
     <script src="https://oybplugin.com/oyb.js"></script>
     <link href="https://oybplugin.com/oyb.css" media="screen" rel="stylesheet" />
 
-note: if you already have Jquery loaded, then you can omit the first script tag.
+note: if you already have jQuery loaded, then you can omit the first script tag.
 
 Step 3: There is no step 3, you are done. Well, I suppose you could refresh the page to see the content.
 
-## Devotional
-
-There is no devotional content yet. I have yet to work out permissions for that.
 
 ## OYB reading plan
 
 The reading plan is a standard one year plan from the internets... an old testament, new testament, Psalm, and Proverb for each day.
 
-## Bible verses
+## Bible translations
 
-Bible content is pulled in via the Bibles.org passage API. We are only using KJV for now (still testing) but should have a translation switcher soon.
+Bible content is pulled in via the Bibles.org passage API. We are only using a few of the free versions provided by the Bibles.org API - KJV, ASV, Free Bible Version. Translation licensing through the Digital Bible Library will be available soon.
 
 ## Styling - CSS
 
