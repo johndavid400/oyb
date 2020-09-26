@@ -69,3 +69,5 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 
+gem 'devise'
+
