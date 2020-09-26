@@ -37,6 +37,8 @@ $black: #000000;
   .oyb-nav-button {
     padding: 8px 15px;
     border: 1px solid $gray;
+    display: inline-block;
+    margin-bottom: 10px;
   }
   .oyb-devotional-title {
     font-size: 1.8em;

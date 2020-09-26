@@ -22,6 +22,8 @@
 .oyb .oyb-nav-button {
   padding: 8px 15px;
   border: 1px solid gray;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 .oyb .oyb-devotional-title {
   font-size: 1.8em;
