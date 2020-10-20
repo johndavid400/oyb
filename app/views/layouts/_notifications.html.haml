@@ -1,0 +1,7 @@
+.alerts
+  %center
+    - if notice
+      .alert.alert-success= notice.html_safe
+    - if alert
+      .alert.alert-danger= alert.html_safe
+

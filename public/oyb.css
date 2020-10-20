@@ -19,6 +19,11 @@
   background: #008cba;
   color: white;
 }
+.oyb-version-switcher {
+  height: 42px;
+  float: right;
+  min-width: 120px;
+}
 .oyb .oyb-nav-button {
   padding: 8px 15px;
   border: 1px solid gray;

@@ -71,3 +71,4 @@ gem 'actionpack-page_caching'
 
 gem 'devise'
 
+gem "letter_opener", :group => :development

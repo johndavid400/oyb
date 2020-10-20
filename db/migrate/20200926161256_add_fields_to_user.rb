@@ -4,6 +4,6 @@ class AddFieldsToUser < ActiveRecord::Migration[6.0]
     add_index :users, :token, unique: true
     add_column :users, :api_bible_key, :string
     add_index :users, :api_bible_key, unique: true
-    add_column :users, :config, :jsonb
+    add_column :users, :config, :jsonb, default: {}
   end
 end

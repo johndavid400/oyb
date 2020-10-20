@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   #root :to => redirect('https://github.com/johndavid400/oyb')
   root :to => 'home#today'
 
+  get 'dashboard' => 'dashboard#index'
+  post 'dashboard' => 'dashboard#update'
+
   get "get_passages" => "passages#get_passages"
   get "today" => "home#today"
+
 
   get 'oyb' => 'home#oyb'
 

@@ -2,7 +2,7 @@ class Bible
   attr_accessor :key, :endpoint, :resp
 
   def initialize(key = ENV['BIBLES_ORG_KEY'])
-    @key = key
+    @key = key.present? ? key : ENV['BIBLES_ORG_KEY']
   end
 
   def bibles(params = {language: 'eng'})
@@ -55,7 +55,9 @@ class Bible
   def get(endpoint, params = {})
     url = base + endpoint.to_s
     resp = Excon.get(url, query: params, headers: {'api-key': ENV["BIBLES_ORG_KEY"]})
-    @resp = JSON.parse(resp.body)
+    @resp = JSON.parse(resp.body)['data']
+  rescue
+    nil
   end
 
 end

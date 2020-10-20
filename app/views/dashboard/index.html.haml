@@ -1,0 +1,55 @@
+= form_for(current_user, url: dashboard_path, method: :post) do |f|
+  .row
+    .col-md-12
+      %h4.mt-5
+        .float-left Dashboard
+        .float-right
+          = submit_tag "Save", class: "btn btn-outline-primary" 
+
+  %hr
+  .mt-5
+  .row
+    .col-md-12
+      .form-group
+        = f.label :api_bible_key
+        = f.text_field :api_bible_key, class: "form-control"
+
+      .form-group
+        %h5.mt-5 Versions
+        %hr
+        .row
+          - current_user.available_versions.each do |version|
+            .col-md-6
+              = check_box_tag "user[config][versions][]", version[:id], current_user.versions&.include?(version[:id])
+              = label_tag version[:name]
+
+.card.mt-5
+  .card-header
+    Optional code to include on your website:
+  .card-body
+    %code
+      .row
+        .col-md-12.mt-3
+          %i.text-secondary
+            If you don't already have jQuery on your site, add this first:
+        .col-md-12.mt-3
+          = current_user.jquery_include 
+      .row.mt-3
+        .col-md-12.mt-3
+          %i.text-secondary
+            Add this to get basic styles (not needed if you provide your own stylesheet):
+        .col-md-12.mt-3
+          = current_user.css_include 
+
+.card.mt-5
+  .card-header
+    Required code to include on your website:
+  .card-body
+    %code
+      .row
+        .col-md-12.mt-3
+          = current_user.div_include 
+        .col-md-12.mt-3
+          = current_user.javascript_include 
+
+.mt-5

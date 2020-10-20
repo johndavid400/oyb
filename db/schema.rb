@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_26_161256) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "token"
     t.string "api_bible_key"
-    t.jsonb "config"
+    t.jsonb "config", default: {}
     t.index ["api_bible_key"], name: "index_users_on_api_bible_key", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
