@@ -59,9 +59,17 @@ class Day < ApplicationRecord
     # available versions
     Rails.cache.fetch("versions-#{@token}", expires_in: 12.hours) do
       bibles = client.bibles.select{|s| user.versions.include?(s["id"]) }
-      bibles.map{|s| [s['name'], s['id']] }.to_h
+      if bibles.present?
+        bibles.map{|s| [s['name'], s['id']] }.to_h
+      else
+        default_versions
+      end
     end
   rescue
+    default_versions
+  end
+
+  def default_versions
     {
       "KJV" => "de4e12af7f28f599-01",
       "ASV" => "06125adad2d5898a-01",

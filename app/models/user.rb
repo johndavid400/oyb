@@ -38,6 +38,8 @@ class User < ApplicationRecord
 
   def versions
     config.dig('versions')
+  rescue
+    []
   end
 
 end
