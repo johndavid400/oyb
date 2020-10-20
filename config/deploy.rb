@@ -5,7 +5,8 @@ set :application, "my_app_name"
 set :repo_url, "git@example.com:me/my_repo.git"
 
 set :application, 'oybplugin.com'
-set :repo_url, "git@bitbucket.org:johndavid400/oyb.git"
+#set :repo_url, "git@bitbucket.org:johndavid400/oyb.git"
+set :repo_url, "git@github.com:johndavid400/oyb.git"
 set :branch, "master"
 
 set :deploy_to, "/home/deployer/oyb"

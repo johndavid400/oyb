@@ -1,4 +1,4 @@
-var script = $('script[src*=oyb-dev]');
+var script = $('script[src*=oyb]');
 var token = script.attr('data-token');
 
 // load scriptures into a div with a class of 'oyb'
@@ -29,6 +29,7 @@ $("body").on("click", ".oyb-nav-switcher", function(event){
 $("body").on("change", ".oyb-version-switcher", function(event){
   event.preventDefault();
   var bible = $(this).val();
+  var day = $("#day").val();
   $.get("https://oybplugin.com/get_passages", {day: day, bible: bible, token: token}, function(data){ $(".oyb").html(data); });
 });
 
