@@ -13,4 +13,30 @@
   = select_tag :bible, options_for_select(versions, bible), :class => 'oyb-version-switcher'
 
   = hidden_field_tag :day, day.id
+
+.oyb-nav-links-tablet
+  .oyb-three-column-grid 	
+    = link_to "< #{day.date.yesterday.strftime("%b %e")}", "#", :class => 'oyb-prev oyb-nav-button oyb-update', :'data-id' => day.id - 1
+    = link_to "#{day.date.tomorrow.strftime("%b %e")} >", "#", :class => 'oyb-next oyb-nav-button oyb-update', :'data-id' => day.id + 1
+    = select_tag :bible, options_for_select(versions, bible), :class => 'oyb-version-switcher'  
+  .oyb-five-column-grid
+    = link_to "Devotional", "#", :class => 'oyb-nav-button oyb-nav-switcher active', :id => "oyb-dv"
+    = link_to "OT", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-ot"
+    = link_to "NT", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-nt"
+    = link_to "Psalm", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-psalm"
+    = link_to "Proverb", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-proverb"
+
+.oyb-nav-links-mobile
+  .oyb-two-column-grid
+    = link_to "< #{day.date.yesterday.strftime("%b %e")}", "#", :class => 'oyb-prev oyb-nav-button oyb-update', :'data-id' => day.id - 1
+    = link_to "#{day.date.tomorrow.strftime("%b %e")} >", "#", :class => 'oyb-next oyb-nav-button oyb-update', :'data-id' => day.id + 1
+  .oyb-one-column-grid
+    = select_tag :bible, options_for_select(versions, bible), :class => 'oyb-version-switcher'  
+  .oyb-three-column-grid
+    = link_to "Devo", "#", :class => 'oyb-nav-button oyb-nav-switcher active', :id => "oyb-dv"
+    = link_to "OT", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-ot"
+    = link_to "NT", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-nt"
+  .oyb-two-column-grid
+    = link_to "Psalm", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-psalm"
+    = link_to "Proverb", "#", :class => 'oyb-nav-button oyb-nav-switcher', :id => "oyb-proverb"
 %hr.oyb-hr

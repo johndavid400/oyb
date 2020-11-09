@@ -12,23 +12,67 @@
   float: right;
   color: gray;
 }
-.oyb .oyb-nav-links { margin: 30px 0px; }
+.oyb .oyb-nav-links, .oyb .oyb-nav-links-tablet, .oyb .oyb-nav-links-mobile { 
+	margin: 30px 0px; 
+}
+.oyb .oyb-nav-links { 
+	display:none; 
+}
+.oyb .oyb-nav-links-tablet { 
+	display:none; 
+}
+.oyb .oyb-nav-links-mobile { 
+	display:block; 
+}
+.oyb-one-column-grid {
+	width: 100%; 
+	display: block;
+}
+.oyb-two-column-grid {
+	width: 100%; 
+	display: grid;
+	grid-column-gap: 5px;
+	grid-template-columns: auto auto;
+}
+.oyb-three-column-grid {
+	width: 100%; 
+	display: grid;
+	grid-column-gap: 5px;
+	grid-template-columns: auto auto auto;
+}
+.oyb-four-column-grid {
+	width: 100%; 
+	display: grid;
+	grid-column-gap: 5px;
+	grid-template-columns: auto auto auto auto;
+}
+.oyb-five-column-grid {
+	width: 100%; 
+	display: grid;
+	grid-column-gap: 5px;
+	grid-template-columns: auto auto auto auto auto;
+}
 .oyb .oyb-nav-links a.oyb-prev { color: black; }
 .oyb .oyb-nav-links a.oyb-next { color: black; }
-.oyb .oyb-nav-links .active {
-  background: #008cba;
-  color: white;
+
+.oyb .oyb-nav-links .active, .oyb .oyb-nav-links-tablet .active, .oyb .oyb-nav-links-mobile .active {
+	background: #008cba;
+	color: white;
 }
+
 .oyb-version-switcher {
   height: 42px;
-  float: right;
   min-width: 120px;
+  width:100%;
+  margin-bottom: 5px;
+  cursor:pointer;
 }
 .oyb .oyb-nav-button {
   padding: 8px 15px;
   border: 1px solid gray;
   display: inline-block;
   margin-bottom: 10px;
+  text-align:center;
 }
 .oyb .oyb-devotional-title {
   font-size: 1.8em;
@@ -71,4 +115,17 @@ select {
   border-radius: 0;
   height: 35px;
   -webkit-appearance: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .oyb .oyb-nav-links {display: none;}
+	.oyb .oyb-nav-links-tablet {display: block;}
+	.oyb .oyb-nav-links-mobile {display: none;}
+	.oyb-version-switcher {float:none;width:100%;margin-bottom: 5px;}
+}
+@media only screen and (min-width: 992px) {
+    .oyb .oyb-nav-links {display: block;}
+	.oyb .oyb-nav-links-tablet {display: none;}
+	.oyb .oyb-nav-links-mobile {display: none;}
+	.oyb-version-switcher {float:right;width:auto;margin-bottom: 0px;}
 }
