@@ -16,7 +16,9 @@
 	margin: 30px 0px; 
 }
 .oyb .oyb-nav-links { 
-	display:none; 
+	display:none;
+	grid-column-gap: 5px;
+	grid-template-columns: auto auto auto auto auto auto auto auto;	
 }
 .oyb .oyb-nav-links-tablet { 
 	display:none; 
@@ -52,9 +54,6 @@
 	grid-column-gap: 5px;
 	grid-template-columns: auto auto auto auto auto;
 }
-.oyb .oyb-nav-links a.oyb-prev { color: black; }
-.oyb .oyb-nav-links a.oyb-next { color: black; }
-
 .oyb .oyb-nav-links .active, .oyb .oyb-nav-links-tablet .active, .oyb .oyb-nav-links-mobile .active {
 	background: #008cba;
 	color: white;
@@ -73,6 +72,7 @@
   display: inline-block;
   margin-bottom: 10px;
   text-align:center;
+  white-space:nowrap;
 }
 .oyb .oyb-devotional-title {
   font-size: 1.8em;
@@ -119,12 +119,12 @@ select {
 
 @media only screen and (min-width: 768px) {
     .oyb .oyb-nav-links {display: none;}
-	.oyb .oyb-nav-links-tablet {display: block;}
+	.oyb .oyb-nav-links-tablet {display: grid;}
 	.oyb .oyb-nav-links-mobile {display: none;}
 	.oyb-version-switcher {float:none;width:100%;margin-bottom: 5px;}
 }
 @media only screen and (min-width: 992px) {
-    .oyb .oyb-nav-links {display: block;}
+    .oyb .oyb-nav-links {display: grid;}
 	.oyb .oyb-nav-links-tablet {display: none;}
 	.oyb .oyb-nav-links-mobile {display: none;}
 	.oyb-version-switcher {float:right;width:auto;margin-bottom: 0px;}
