@@ -12,6 +12,19 @@
   float: right;
   color: gray;
 }
+.oyb-nav-date {
+  font-size: 1.2em;
+  color: gray !important;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+.oyb-prev {
+	float:left;	
+}
+.oyb-next {
+	float:right;	
+}
+
 .oyb .oyb-nav-links, .oyb .oyb-nav-links-tablet, .oyb .oyb-nav-links-mobile { 
 	margin: 30px 0px; 
 }
@@ -28,7 +41,9 @@
 }
 .oyb-one-column-grid {
 	width: 100%; 
-	display: block;
+	display: grid;
+	grid-template-columns: auto
+	text-align: left;
 }
 .oyb-two-column-grid {
 	width: 100%; 
@@ -71,9 +86,15 @@
   border: 1px solid gray;
   display: inline-block;
   margin-bottom: 10px;
-  text-align:center;
   white-space:nowrap;
 }
+.oyb-nav-button-center {
+  text-align:center;
+}
+.oyb-nav-button-left {
+  text-align:left;
+}
+
 .oyb .oyb-devotional-title {
   font-size: 1.8em;
   color: #008cba;
@@ -114,7 +135,6 @@ select {
   border: 1px solid gray;
   border-radius: 0;
   height: 35px;
-  -webkit-appearance: none;
 }
 
 @media only screen and (min-width: 768px) {
