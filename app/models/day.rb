@@ -1,8 +1,10 @@
 class Day < ApplicationRecord
 
   def self.today
-    date = Date.today
-    Day.find_by(month_of_year: date.strftime("%-m"), day_of_month: date.strftime("%-d"))
+    Rails.cache.fetch('days/today', expires_in: 10.minutes) do
+      date = Date.today
+      Day.find_by(month_of_year: date.strftime("%-m"), day_of_month: date.strftime("%-d"))
+    end
   end
 
   def passages
