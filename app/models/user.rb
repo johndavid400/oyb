@@ -31,9 +31,7 @@ class User < ApplicationRecord
   end
 
   def available_versions
-    Rails.cache.fetch("#{id}/versions", expires_in: 2.hours) do
-      bible_client.bibles.map{|s| [{id: s["id"], name: s["name"]}] }.flatten
-    end
+    bible_client.bibles.map{|s| [{id: s["id"], name: s["name"]}] }.flatten
   end
 
   def versions
