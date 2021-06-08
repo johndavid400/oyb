@@ -44,13 +44,41 @@ class Day < ApplicationRecord
     end
   end
 
+  ##### API specific results #####
+
+  def get_passages_api(params = {})
+    @token = params[:token]
+
+    result = {}
+    # Default to King James Version if none is specified: "de4e12af7f28f599-01"
+    bible_id = params[:bible].present? ? params[:bible] : "de4e12af7f28f599-01"
+    # prepend the nav and devotional templates
+    result.merge!({day: id})
+    result.merge!({version: user.available_versions.find{|v| v[:id] == params[:bible]}})
+    result.merge!({devotional: {author: author, content: devotional}})
+
+    passages_with_names.each do |section, passages|
+      result.deep_merge!({passages: {section.to_sym => cached_passage_api(bible_id, section)}})
+    end
+
+    return result
+  end
+
+  def cached_passage_api(bible_id, section)
+    Rails.cache.fetch("#{id}-#{bible_id}-#{section}-api", expires_in: 12.hours) do
+      get_passage(bible_id, section)
+    end
+  end
+
+  ###################
+
   def get_passage(bible_id = "de4e12af7f28f599-01", section)
     passage_id = self.send(section)
     client.passages(bible_id, passage_id)
   end
 
   def formatted_devotional
-    "<div class='oyb-devotional-title'>Daily Devotional</div><div class='oyb-devotional-author'>Larry Stockstill</div><div class='oyb-devotional'>#{devotional}</div>"
+    "<div class='oyb-devotional-title'>Daily Devotional</div><div class='oyb-devotional-author'>#{author}</div><div class='oyb-devotional'>#{devotional}</div>"
   end
 
   def action_controller

@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   get "get_passages" => "passages#get_passages"
   get "today" => "home#today"
 
+  namespace :api do
+    namespace :v1 do
+      get 'passages' => 'passages#get_passages'
+    end
+  end
 
   get 'oyb' => 'home#oyb'
 
