@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'passages' => 'passages#get_passages'
+      get 'versions' => 'users#versions'
     end
   end
 
