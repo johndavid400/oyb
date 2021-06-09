@@ -12,9 +12,9 @@ module Api
 
     def verify_key
       authenticate_or_request_with_http_token do |token, options|
-        return false unless User.exists?(token: token)
+        return false unless User.exists?(api_key: token)
 
-        @user = User.find_by(token: token)
+        @user = User.find_by(api_key: token)
       end
     end
 

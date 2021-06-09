@@ -11,7 +11,7 @@
   .row
     .col-md-12
       .form-group
-        = f.label :api_bible_key
+        = f.label :api_bible_key, "API.Bible Key"
         = f.text_field :api_bible_key, class: "form-control"
 
       .form-group
@@ -51,5 +51,16 @@
           = current_user.div_include 
         .col-md-12.mt-3
           = current_user.javascript_include 
+
+.card.mt-5
+  .card-header
+    OYB API Key:
+  .card-body
+    .text-secondary
+      %i
+        = "Use this to access content through the OYB REST API"
+        = link_to "(view API documentation)", "https://documenter.getpostman.com/view/3995866/TzY7dZEd#006d7609-ee33-435e-bbf1-096e3279ed50", target: "_blank"
+    .mt-3
+      = current_user.api_key
 
 .mt-5

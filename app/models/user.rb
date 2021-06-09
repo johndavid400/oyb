@@ -7,8 +7,7 @@ class User < ApplicationRecord
          #:confirmable, :trackable
 
   has_secure_token
-
-  validates :api_bible_key, uniqueness: true
+  has_secure_token :api_key
 
   def javascript_include
     "<script src='https://oybplugin.com/oyb.js' data-token='#{token}'></script>"
