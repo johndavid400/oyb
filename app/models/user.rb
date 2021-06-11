@@ -35,7 +35,7 @@ class User < ApplicationRecord
     end
   end
 
-  def version_select
+  def selected_versions
     Rails.cache.fetch("#{cache_key_with_version}/selected_versions", expires_in: 24.hours) do
       available_versions.select{|s| versions.include?(s[:id]) }
     end
