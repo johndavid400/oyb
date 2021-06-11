@@ -12,10 +12,14 @@ module Api
 
     def verify_key
       authenticate_or_request_with_http_token do |token, options|
-        return false unless User.exists?(api_key: token)
+        return invalid_key unless User.exists?(api_key: token)
 
         @user = User.find_by(api_key: token)
       end
+    end
+
+    def invalid_key
+      render json: {error: 'Unauthorized', message: 'API key is invalid'}, status: :unauthorized
     end
 
     def find_day
