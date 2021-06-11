@@ -90,7 +90,7 @@ class Day < ApplicationRecord
     Rails.cache.fetch("versions-#{@token}", expires_in: 12.hours) do
       bibles = client.bibles.select{|s| user.versions.include?(s["id"]) }
       if bibles.present?
-        bibles.map{|s| [s['name'], s['id']] }.to_h
+        bibles.map{|s| [s['abbreviationLocal'], s['id']] }.to_h
       else
         default_versions
       end

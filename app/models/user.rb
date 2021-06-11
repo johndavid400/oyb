@@ -30,8 +30,14 @@ class User < ApplicationRecord
   end
 
   def available_versions
-    Rails.cache.fetch("#{cache_key_with_version}/versions", expires_in: 24.hours) do
-      bible_client.bibles.map{|s| [{id: s["id"], name: s["name"]}] }.flatten
+    Rails.cache.fetch("#{cache_key_with_version}/available_versions", expires_in: 24.hours) do
+      bible_client.bibles.map{|s| [{id: s["id"], name: s["name"], abbv: s["abbreviationLocal"]}] }.flatten
+    end
+  end
+
+  def version_select
+    Rails.cache.fetch("#{cache_key_with_version}/selected_versions", expires_in: 24.hours) do
+      available_versions.select{|s| versions.include?(s[:id]) }
     end
   end
 

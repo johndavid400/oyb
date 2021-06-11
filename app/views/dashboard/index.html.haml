@@ -22,6 +22,7 @@
             .col-md-6
               = check_box_tag "user[config][versions][]", version[:id], current_user.versions&.include?(version[:id])
               = label_tag version[:name]
+              = "(#{version[:abbv]&.upcase})"
 
 .card.mt-5
   .card-header
