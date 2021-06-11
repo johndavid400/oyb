@@ -49,19 +49,37 @@ class Day < ApplicationRecord
   def get_passages_api(params = {})
     @token = params[:token]
 
-    result = {}
     # Default to King James Version if none is specified: "de4e12af7f28f599-01"
-    bible_id = params[:bible].present? ? params[:bible] : "de4e12af7f28f599-01"
+    @bible_id = params[:bible].present? ? params[:bible] : "de4e12af7f28f599-01"
     # prepend the nav and devotional templates
-    result.merge!({day: id})
-    result.merge!({version: user.available_versions.find{|v| v[:id] == params[:bible]}})
-    result.merge!({devotional: {author: author, content: devotional}})
 
-    passages_with_names.each do |section, passages|
-      result.deep_merge!({passages: {section.to_sym => cached_passage_api(bible_id, section)}})
+    Rails.cache.fetch("#{id}-#{@token}-#{@bible_id}-api", expires_in: 4.hours) do
+      result = {}
+      result.merge!({
+        day: {
+          id: id,
+          text: date.strftime("%B %e"),
+          monthOfYear: date.strftime("%_m"),
+          dayOfMonth: date.strftime("%e")
+        }
+      })
+      result.merge!({version: user.available_versions.find{|v| v[:id] == @bible_id}})
+      result.merge!({
+        devotional: {
+          author: author,
+          content: devotional
+        }
+      })
+
+      passages_with_names.each do |section, passages|
+        result.deep_merge!({
+          passages: {
+            section.to_sym => cached_passage_api(@bible_id, section)
+          }
+        })
+      end
+      result
     end
-
-    return result
   end
 
   def cached_passage_api(bible_id, section)
