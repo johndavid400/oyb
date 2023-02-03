@@ -13,15 +13,21 @@
       .form-group
         = f.label :api_bible_key
         = f.text_field :api_bible_key, class: "form-control"
+    .col-md-12
+      %i.text-secondary
+        If you don't already have an API key with the Api.Bible platform, you will need to create an account and copy your API key into the field above.
+        = link_to 'Click here to create an Api.Bible account.', 'https://scripture.api.bible/signup', target: '_blank'
 
-      .form-group
-        %h5.mt-5 Versions
-        %hr
-        .row
-          - current_user.available_versions.each do |version|
-            .col-md-6
-              = check_box_tag "user[config][versions][]", version[:id], current_user.versions&.include?(version[:id])
-              = label_tag version[:name]
+
+      - if current_user.api_bible_key.present?
+        .form-group
+          %h5.mt-5 Versions
+          %hr
+          .row
+            - current_user.available_versions.each do |version|
+              .col-md-6
+                = check_box_tag "user[config][versions][]", version[:id], current_user.versions&.include?(version[:id])
+                = label_tag version[:name]
 
 .card.mt-5
   .card-header

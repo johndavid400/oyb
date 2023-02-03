@@ -30,6 +30,8 @@ class User < ApplicationRecord
 
   def available_versions
     bible_client.bibles.map{|s| [{id: s["id"], name: s["name"]}] }.flatten
+  rescue
+    []
   end
 
   def versions
