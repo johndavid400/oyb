@@ -8,8 +8,6 @@ class User < ApplicationRecord
 
   has_secure_token
 
-  validates :api_bible_key, uniqueness: true
-
   def javascript_include
     "<script src='https://oybplugin.com/oyb.js' data-token='#{token}'></script>"
   end
