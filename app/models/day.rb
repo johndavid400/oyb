@@ -42,6 +42,8 @@ class Day < ApplicationRecord
       resp = get_passage(bible_id, section)
       action_controller.render_to_string(:template => 'passages/_passage.html.haml', :layout => false, :locals => {type: section, title: resp['reference'], scriptures: resp['content']})
     end
+  rescue
+    ''
   end
 
   def get_passage(bible_id = "de4e12af7f28f599-01", section)
